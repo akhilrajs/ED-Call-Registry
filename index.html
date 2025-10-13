@@ -22,6 +22,31 @@
             color: #333;
         }
 
+        .date-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .date-navigation button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .date-navigation button:hover {
+            background-color: #0056b3;
+        }
+
+        .date-navigation span {
+            font-size: 20px;
+            margin: 0 20px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -55,7 +80,14 @@
 <body>
     <div class="container">
         <h1>On-Call Dashboard for ED - AIIMS Raipur</h1>
-        <h2 id="dateTitle"></h2>
+        
+        <!-- Date Navigation -->
+        <div class="date-navigation">
+            <button id="prevDay">←</button>
+            <span id="dateTitle"></span>
+            <button id="nextDay">→</button>
+        </div>
+        
         <table id="callTable">
             <thead>
                 <tr>
@@ -71,55 +103,83 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date();
-            const day = today.getDate();
-            const month = today.getMonth() + 1;  // Months are 0-based in JavaScript
-            const year = today.getFullYear();
-            const dateString = `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year.toString().slice(2)}`;
+        let currentDate = new Date();
+        let rosterData = [];  // Store the full roster data
+        let currentRoster = [];  // Store the roster for the current day
+
+        // Fetch the JSON data from the `calldata/roster.json` file
+        fetch('calldata/roster.json')
+            .then(response => response.json())
+            .then(data => {
+                rosterData = data.Departments;  // Store all the department data
+                updateTableForDate(currentDate); // Display the data for the current date
+            })
+            .catch(err => {
+                console.error('Error fetching JSON:', err);
+            });
+
+        function formatDate(date) {
+            const day = date.getDate();
+            const month = date.getMonth() + 1; // Months are 0-based
+            const year = date.getFullYear();
+            return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year.toString().slice(2)}`;
+        }
+
+        function updateTableForDate(date) {
+            const dateString = formatDate(date);
             const dateTitle = document.getElementById('dateTitle');
             dateTitle.innerText = `On-Call Information for ${dateString}`;
+            
+            // Find the duty roster for the selected date
+            currentRoster = [];
+            rosterData.forEach(department => {
+                const dutyRoster = department.DutyRoster.find(item => item.Date === dateString);
+                if (dutyRoster) {
+                    currentRoster.push({
+                        department: department.Department,
+                        firstCall: dutyRoster.FirstCall,
+                        secondCall: dutyRoster.SecondCall
+                    });
+                }
+            });
 
-            // Fetch the JSON data from the `calldata/roster.json` file
-            fetch('calldata/rooster.json')
-                .then(response => response.json())
-                .then(data => {
-                    const roster = data.DutyRoster;
-                    const todayRoster = roster.find(item => item.Date === dateString);
+            // Clear existing table rows
+            const tableBody = document.getElementById('callTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; 
 
-                    if (todayRoster) {
-                        const tableBody = document.getElementById('callTable').getElementsByTagName('tbody')[0];
-                        const newRow = tableBody.insertRow();
+            // Insert the new rows
+            currentRoster.forEach(entry => {
+                const newRow = tableBody.insertRow();
+                const departmentCell = newRow.insertCell();
+                departmentCell.textContent = entry.department;
 
-                        // Insert department
-                        const departmentCell = newRow.insertCell();
-                        departmentCell.textContent = data.Department;
+                const firstCallCell = newRow.insertCell();
+                firstCallCell.innerHTML = `<strong>${entry.firstCall.Name}</strong><br><span class="phone-number">${entry.firstCall.Number}</span>`;
 
-                        // First Call
-                        const firstCallCell = newRow.insertCell();
-                        firstCallCell.innerHTML = `<strong>${todayRoster.FirstCall.Name}</strong><br><span class="phone-number">${todayRoster.FirstCall.Number}</span>`;
-
-                        // Second Call
-                        const secondCallCell = newRow.insertCell();
-                        secondCallCell.innerHTML = `<strong>${todayRoster.SecondCall.Name}</strong><br><span class="phone-number">${todayRoster.SecondCall.Number}</span>`;
-
-                        // Add copy functionality for phone numbers
-                        document.querySelectorAll('.phone-number').forEach(cell => {
-                            cell.addEventListener('click', function() {
-                                const phoneNumber = this.textContent;
-                                navigator.clipboard.writeText(phoneNumber).then(() => {
-                                    alert('Phone number copied to clipboard!');
-                                });
-                            });
+                const secondCallCell = newRow.insertCell();
+                secondCallCell.innerHTML = `<strong>${entry.secondCall.Name}</strong><br><span class="phone-number">${entry.secondCall.Number}</span>`;
+                
+                // Add copy functionality for phone numbers
+                document.querySelectorAll('.phone-number').forEach(cell => {
+                    cell.addEventListener('click', function() {
+                        const phoneNumber = this.textContent;
+                        navigator.clipboard.writeText(phoneNumber).then(() => {
+                            alert('Phone number copied to clipboard!');
                         });
-                    } else {
-                        dateTitle.innerText = 'No on-call information available for today.';
-                    }
-                })
-                .catch(err => {
-                    console.error('Error fetching JSON:', err);
-                    dateTitle.innerText = 'Failed to load on-call information.';
+                    });
                 });
+            });
+        }
+
+        // Handle next and previous day navigation
+        document.getElementById('prevDay').addEventListener('click', function() {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateTableForDate(currentDate);
+        });
+
+        document.getElementById('nextDay').addEventListener('click', function() {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateTableForDate(currentDate);
         });
     </script>
 </body>
