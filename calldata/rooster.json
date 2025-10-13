@@ -191,3 +191,192 @@
     }
   ]
 }
+{
+  "Department": "Cardio Vascular & Thoracic Surgery",
+  "Institute": "AIIMS Raipur",
+  "Month": "October 2025",
+  "DutyRoster": [
+    {
+      "Date": "01-10-25",
+      "Day": "Wed",
+      "FirstCall": { "Name": "Dr. Yash", "Number": "8518887686" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "02-10-25",
+      "Day": "Thu",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "03-10-25",
+      "Day": "Fri",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "04-10-25",
+      "Day": "Sat",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "05-10-25",
+      "Day": "Sun",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "06-10-25",
+      "Day": "Mon",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "07-10-25",
+      "Day": "Tue",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "08-10-25",
+      "Day": "Wed",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "09-10-25",
+      "Day": "Thu",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "10-10-25",
+      "Day": "Fri",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "11-10-25",
+      "Day": "Sat",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "12-10-25",
+      "Day": "Sun",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "13-10-25",
+      "Day": "Mon",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "14-10-25",
+      "Day": "Tue",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "15-10-25",
+      "Day": "Wed",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "16-10-25",
+      "Day": "Thu",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "17-10-25",
+      "Day": "Fri",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "18-10-25",
+      "Day": "Sat",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "19-10-25",
+      "Day": "Sun",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "20-10-25",
+      "Day": "Mon",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "21-10-25",
+      "Day": "Tue",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "22-10-25",
+      "Day": "Wed",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "23-10-25",
+      "Day": "Thu",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "24-10-25",
+      "Day": "Fri",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "25-10-25",
+      "Day": "Sat",
+      "FirstCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" },
+      "SecondCall": { "Name": "Dr. Gasper", "Number": "9940154333" }
+    },
+    {
+      "Date": "26-10-25",
+      "Day": "Sun",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "27-10-25",
+      "Day": "Mon",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "28-10-25",
+      "Day": "Tue",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "29-10-25",
+      "Day": "Wed",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    },
+    {
+      "Date": "30-10-25",
+      "Day": "Thu",
+      "FirstCall": { "Name": "Dr. Gasper", "Number": "9940154333" },
+      "SecondCall": { "Name": "Dr. Akhilesh", "Number": "9960161092" }
+    }
+  ]
+}
+
+
