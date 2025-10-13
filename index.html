@@ -55,6 +55,26 @@
         .phone-number {
             color: #007bff;
             text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #datePicker {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        #updateDateButton {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        #updateDateButton:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -63,6 +83,9 @@
         <h1>On-Call Dashboard for ED - AIIMS Raipur</h1>
         
         <div id="currentDay" class="current-day"></div>
+
+        <input type="date" id="datePicker" />
+        <button id="updateDateButton">Update Date</button>
 
         <!-- Table for On-Call Data -->
         <table id="callTable">
@@ -128,8 +151,8 @@
             const dateString = formatDate(date);
             const dayOfWeek = getDayOfWeek(date);
 
-            // Update the current day display
-            document.getElementById('currentDay').textContent = `Showing data for: ${getCurrentDayDisplay(date)}`;
+            // Update the current day display with the new format
+            document.getElementById('currentDay').textContent = `On-Call - ${getCurrentDayDisplay(date)} (08AM - 08PM)`;
 
             // Clear existing table rows
             const tableBody = document.getElementById('callTable').getElementsByTagName('tbody')[0];
@@ -148,27 +171,36 @@
                     departmentCell.textContent = department.Department;
 
                     const firstCallCell = newRow.insertCell();
-                    firstCallCell.innerHTML = `<strong>${dutyRoster.FirstCall.Name}</strong><br><span class="phone-number">${dutyRoster.FirstCall.Number}</span>`;
+                    firstCallCell.innerHTML = `<strong>${dutyRoster.FirstCall.Name}</strong><br><span class="phone-number" data-phone="${dutyRoster.FirstCall.Number}">${dutyRoster.FirstCall.Number}</span>`;
 
                     const secondCallCell = newRow.insertCell();
-                    secondCallCell.innerHTML = `<strong>${dutyRoster.SecondCall.Name}</strong><br><span class="phone-number">${dutyRoster.SecondCall.Number}</span>`;
-                    
-                    // Add copy functionality for phone numbers
-                    document.querySelectorAll('.phone-number').forEach(cell => {
-                        cell.addEventListener('click', function() {
-                            const phoneNumber = this.textContent;
-                            navigator.clipboard.writeText(phoneNumber).then(() => {
-                                alert('Phone number copied to clipboard!');
-                            });
-                        });
-                    });
+                    secondCallCell.innerHTML = `<strong>${dutyRoster.SecondCall.Name}</strong><br><span class="phone-number" data-phone="${dutyRoster.SecondCall.Number}">${dutyRoster.SecondCall.Number}</span>`;
                 }
             });
 
             if (!foundData) {
                 tableBody.innerHTML = '<tr><td colspan="3">No data available for today</td></tr>';
             }
+
+            // Add click event for phone numbers to initiate a call
+            document.querySelectorAll('.phone-number').forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const phoneNumber = this.getAttribute('data-phone');
+                    window.location.href = `tel:${phoneNumber}`;
+                });
+            });
         }
+
+        // When the "Update Date" button is clicked
+        document.getElementById('updateDateButton').addEventListener('click', function() {
+            const dateInput = document.getElementById('datePicker').value;
+            if (dateInput) {
+                const selectedDate = new Date(dateInput);
+                updateTableForDate(selectedDate);
+            } else {
+                alert('Please select a date');
+            }
+        });
     </script>
 </body>
 </html>
