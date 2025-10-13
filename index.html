@@ -81,7 +81,7 @@
             dateTitle.innerText = `On-Call Information for ${dateString}`;
 
             // Fetch the JSON data from the `calldata/roster.json` file
-            fetch('calldata/roster.json')
+            fetch('calldata/rooster.json')
                 .then(response => response.json())
                 .then(data => {
                     const roster = data.DutyRoster;
