@@ -98,6 +98,7 @@
             .then(response => response.json())
             .then(data => {
                 rosterData = data.Departments;  // Store all the department data
+                console.log('Fetched Data:', rosterData);  // Check if data is being fetched
                 updateTableForDate(currentDate); // Display the data for the current date
             })
             .catch(err => {
@@ -108,7 +109,7 @@
             const day = date.getDate();
             const month = date.getMonth() + 1; // Months are 0-based
             const year = date.getFullYear();
-            return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+            return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`; // Format to YYYY-MM-DD for input
         }
 
         function updateTableForDate(date) {
@@ -129,9 +130,15 @@
                 }
             });
 
+            console.log('Current Roster for ' + dateString, currentRoster); // Log current roster for debugging
+
             // Clear existing table rows
             const tableBody = document.getElementById('callTable').getElementsByTagName('tbody')[0];
             tableBody.innerHTML = ''; 
+
+            if (currentRoster.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3">No data available for this date</td></tr>';
+            }
 
             // Insert the new rows
             currentRoster.forEach(entry => {
