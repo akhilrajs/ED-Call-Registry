@@ -22,6 +22,12 @@
             color: #333;
         }
 
+        .current-day {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -56,6 +62,8 @@
     <div class="container">
         <h1>On-Call Dashboard for ED - AIIMS Raipur</h1>
         
+        <div id="currentDay" class="current-day"></div>
+
         <!-- Table for On-Call Data -->
         <table id="callTable">
             <thead>
@@ -78,7 +86,7 @@
 
         // List of all the department files in the 'calldata' folder (you must manually list these here)
         const departmentFiles = [
-            'calldata/Burns and Plastic Surgery.json','calldata/Cardio Vascular & Thoracic Surgery.json'
+            'calldata/Burns and Plastic Surgery.json', 'calldata/Cardio Vascular & Thoracic Surgery.json'
             // Add more department JSON files here if needed
         ];
 
@@ -104,9 +112,24 @@
             return days[date.getDay()];
         }
 
+        function getCurrentDayDisplay(date) {
+            const dayOfWeek = getDayOfWeek(date);
+            const formattedDate = formatDate(date);
+            return `${dayOfWeek}, ${formattedDate}`;
+        }
+
         function updateTableForDate(date) {
+            // Check if the time is before 08:00 AM; if so, use the previous day
+            const hours = date.getHours();
+            if (hours < 8) {
+                date.setDate(date.getDate() - 1);  // Go back to the previous day
+            }
+
             const dateString = formatDate(date);
             const dayOfWeek = getDayOfWeek(date);
+
+            // Update the current day display
+            document.getElementById('currentDay').textContent = `Showing data for: ${getCurrentDayDisplay(date)}`;
 
             // Clear existing table rows
             const tableBody = document.getElementById('callTable').getElementsByTagName('tbody')[0];
