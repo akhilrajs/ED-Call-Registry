@@ -1,0 +1,119 @@
+{
+  "Department": "Radiodiagnosis",
+  "Institute": "AIIMS Raipur",
+  "Month": "February 2026",
+  "DutyRoster": [
+    { "Date": "01-02-2026", "Day": "Sunday",
+      "FirstCall": { "Name": "Dr. Trisha", "Number": "+918763349975" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "02-02-2026", "Day": "Monday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Poorvi", "Number": null }
+    },
+    { "Date": "03-02-2026", "Day": "Tuesday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "04-02-2026", "Day": "Wednesday",
+      "FirstCall": { "Name": "Dr. Jaivignesh", "Number": "+919566182994" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "05-02-2026", "Day": "Thursday",
+      "FirstCall": { "Name": "Dr. Stuti", "Number": "+918318499533" },
+      "SecondCall": { "Name": "Dr. Poorvi", "Number": null }
+    },
+    { "Date": "06-02-2026", "Day": "Friday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "07-02-2026", "Day": "Saturday",
+      "FirstCall": { "Name": "Dr. Jaivignesh", "Number": "+919566182994" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "08-02-2026", "Day": "Sunday",
+      "FirstCall": { "Name": "Dr. Stuti", "Number": "+918318499533" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "09-02-2026", "Day": "Monday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Chandana", "Number": null }
+    },
+    { "Date": "10-02-2026", "Day": "Tuesday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Jayanth", "Number": null }
+    },
+    { "Date": "11-02-2026", "Day": "Wednesday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "12-02-2026", "Day": "Thursday",
+      "FirstCall": { "Name": "Dr. Trisha", "Number": "+918763349975" },
+      "SecondCall": { "Name": "Dr. Niyanta", "Number": null }
+    },
+    { "Date": "13-02-2026", "Day": "Friday",
+      "FirstCall": { "Name": "Dr. Stuti", "Number": "+918318499533" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "14-02-2026", "Day": "Saturday",
+      "FirstCall": { "Name": "Dr. Trisha", "Number": "+918763349975" },
+      "SecondCall": { "Name": "Dr. Chandana", "Number": null }
+    },
+    { "Date": "15-02-2026", "Day": "Sunday",
+      "FirstCall": { "Name": "Dr. Jaivignesh", "Number": "+919566182994" },
+      "SecondCall": { "Name": "Dr. Niyanta", "Number": null }
+    },
+    { "Date": "16-02-2026", "Day": "Monday",
+      "FirstCall": { "Name": "Dr. Stuti", "Number": "+918318499533" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "17-02-2026", "Day": "Tuesday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Poorvi", "Number": null }
+    },
+    { "Date": "18-02-2026", "Day": "Wednesday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "19-02-2026", "Day": "Thursday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Chandana", "Number": null }
+    },
+    { "Date": "20-02-2026", "Day": "Friday",
+      "FirstCall": { "Name": "Dr. Trisha", "Number": "+918763349975" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "21-02-2026", "Day": "Saturday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Jayanth", "Number": null }
+    },
+    { "Date": "22-02-2026", "Day": "Sunday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Niyanta", "Number": null }
+    },
+    { "Date": "23-02-2026", "Day": "Monday",
+      "FirstCall": { "Name": "Dr. Stuti", "Number": "+918318499533" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "24-02-2026", "Day": "Tuesday",
+      "FirstCall": { "Name": "Dr. Trisha", "Number": "+918763349975" },
+      "SecondCall": { "Name": "Dr. Poorvi", "Number": null }
+    },
+    { "Date": "25-02-2026", "Day": "Wednesday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Anush", "Number": null }
+    },
+    { "Date": "26-02-2026", "Day": "Thursday",
+      "FirstCall": { "Name": "Dr. Piyush", "Number": "+919657360279" },
+      "SecondCall": { "Name": "Dr. Chandana", "Number": null }
+    },
+    { "Date": "27-02-2026", "Day": "Friday",
+      "FirstCall": { "Name": "Dr. Boopathi", "Number": "+919952852602" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    },
+    { "Date": "28-02-2026", "Day": "Saturday",
+      "FirstCall": { "Name": "Dr. Jaivignesh", "Number": "+919566182994" },
+      "SecondCall": { "Name": "Dr. Akhil", "Number": null }
+    }
+  ]
+}
