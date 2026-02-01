@@ -163,7 +163,8 @@
     let rosterData = [];
     const departmentFiles = [
       'calldata/Burns and Plastic Surgery.json',
-      'calldata/Cardio Vascular & Thoracic Surgery.json'
+      'calldata/Cardio Vascular & Thoracic Surgery.json' , 
+      'calldata/Radiology.json'
     ];
 
     Promise.all(departmentFiles.map(file => fetch(file).then(res => res.json())))
