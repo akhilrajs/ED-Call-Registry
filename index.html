@@ -9,28 +9,67 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#0f172a}
-header{text-align:center;padding:20px;background:#ffffffcc;backdrop-filter: blur(12px);border-bottom:1px solid #e2e8f0;position:sticky;top:0}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  text-align:center;
+  padding:18px;
+  background:#ffffffcc;
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid #e2e8f0;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
 .logo{height:45px;margin-bottom:8px}
-header h2{font-size:1.3rem;font-weight:600;color:#1e3a8a}
-.controls{margin-top:12px}
+header h2{font-size:1.2rem;font-weight:600;color:#1e3a8a}
+
+.controls{margin-top:10px}
 input{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
-button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;background:#1e3a8a;color:white;display:block;margin:auto}
-.container{padding:15px;max-width:1000px;margin:auto}
+
+button{
+  margin-top:10px;
+  padding:8px 18px;
+  border:none;
+  border-radius:10px;
+  background:#1e3a8a;
+  color:white;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.container{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
 
 .table{
   width:100%;
+  max-width:1200px;
   border-collapse:collapse;
   background:white;
-  border-radius:12px;
+  border-radius:14px;
   overflow:hidden;
 }
 
 .table th, .table td{
-  padding:12px;
+  padding:14px;
   border-bottom:1px solid #e2e8f0;
   text-align:center;
-  font-size:14px;
+  font-size:15px;
 }
 
 .table th{
@@ -42,14 +81,29 @@ button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;backgrou
   color:#1e3a8a;
   font-weight:600;
   cursor:pointer;
+  display:inline-block;
+  transition:transform 0.15s ease;
 }
 
-.null{
-  color:#94a3b8;
+.name:hover{
+  transform:scale(1.08);
 }
+
+.name.pop{
+  animation:pop 0.2s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.2)}
+  100%{transform:scale(1)}
+}
+
+.null{color:#94a3b8}
 
 .empty{text-align:center;margin-top:30px}
 .empty img{width:140px}
+
 </style>
 </head>
 
@@ -66,13 +120,12 @@ button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;backgrou
 </header>
 
 <div class="container">
-<div id="output"></div>
+<div id="output" style="width:100%"></div>
 </div>
 
 <script>
 const CONTACT_FILE = "call_data/contact_details.csv";
 
-// 🔴 ADD YOUR DEPARTMENTS HERE
 const DEPARTMENTS = [
   "ctvs",
   "medicine",
@@ -88,7 +141,6 @@ function formatDate(d){
 
 const now=new Date();
 if(now.getHours()<8){now.setDate(now.getDate()-1)}
-// keep input in YYYY-MM-DD but convert for matching later
 document.getElementById("datePicker").value = now.toISOString().split('T')[0];
 
 async function loadCSV(file){
@@ -114,27 +166,31 @@ function getValue(row,header,key){
 
 let CONTACTS=[];
 
-async function handleCall(name){
+async function handleCall(el,name){
   if(name==="<null>") return;
+
+  el.classList.add("pop");
 
   if(CONTACTS.length===0){
     CONTACTS=await loadCSV(CONTACT_FILE);
   }
 
   const row=CONTACTS?.find(r=>r[0].trim()===name.trim());
-  if(row){window.location.href=`tel:${row[1]}`}
-  else alert("Number not found for "+name);
+
+  setTimeout(()=>{
+    if(row){window.location.href=`tel:${row[1]}`}
+    else alert("Number not found for "+name);
+    el.classList.remove("pop");
+  },180);
 }
 
 function formatCell(name){
   if(name==="<null>") return `<span class='null'>&lt;null&gt;</span>`;
-  return `<span class='name' onclick="handleCall('${name}')">${name}</span>`;
+  return `<span class='name' onclick="handleCall(this,'${name}')">${name}</span>`;
 }
 
 async function init(){
   const rawDate = document.getElementById("datePicker").value;
-
-  // convert YYYY-MM-DD → DD/MM/YYYY
   const parts = rawDate.split('-');
   const date = `${parts[2]}/${parts[1]}/${parts[0]}`;
   const out=document.getElementById("output");
