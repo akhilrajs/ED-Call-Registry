@@ -14,67 +14,72 @@ body{
   font-family:'Inter',sans-serif;
   background:#f1f5f9;
   color:#0f172a;
-  min-height:100vh;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* MAIN APP WRAPPER */
+.app{
+  width:100%;
+  max-width:1100px;
+  height:90vh;
   display:flex;
   flex-direction:column;
+  background:#ffffff;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  overflow:hidden;
 }
 
 header{
   text-align:center;
-  padding:18px;
-  background:#ffffffcc;
-  backdrop-filter: blur(12px);
+  padding:15px;
   border-bottom:1px solid #e2e8f0;
-  position:sticky;
-  top:0;
-  z-index:10;
 }
 
-.logo{height:45px;margin-bottom:8px}
-header h2{font-size:1.2rem;font-weight:600;color:#1e3a8a}
+.logo{height:40px;margin-bottom:6px}
+header h2{font-size:1.1rem;font-weight:600;color:#1e3a8a}
 
-.controls{margin-top:10px}
-input{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
+.controls{margin-top:8px}
+input{padding:8px;border-radius:8px;border:1px solid #cbd5e1}
 
 button{
-  margin-top:10px;
-  padding:8px 18px;
+  margin-top:8px;
+  padding:6px 14px;
   border:none;
-  border-radius:10px;
+  border-radius:8px;
   background:#1e3a8a;
   color:white;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
 }
 
-.container{
+.content{
   flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:15px;
+  padding:10px;
 }
 
 .table{
   width:100%;
-  max-width:1200px;
+  height:100%;
   border-collapse:collapse;
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
 }
 
 .table th, .table td{
-  padding:14px;
+  padding:12px;
   border-bottom:1px solid #e2e8f0;
   text-align:center;
-  font-size:15px;
+  font-size:14px;
 }
 
 .table th{
   background:#1e3a8a;
   color:white;
+  position:sticky;
+  top:0;
 }
 
 .name{
@@ -82,11 +87,6 @@ button{
   font-weight:600;
   cursor:pointer;
   display:inline-block;
-  transition:transform 0.15s ease;
-}
-
-.name:hover{
-  transform:scale(1.08);
 }
 
 .name.pop{
@@ -101,13 +101,15 @@ button{
 
 .null{color:#94a3b8}
 
-.empty{text-align:center;margin-top:30px}
-.empty img{width:140px}
+.empty{text-align:center}
+.empty img{width:120px}
 
 </style>
 </head>
 
 <body>
+
+<div class="app">
 
 <header>
 <img src="https://website.aiimsraipur.edu.in/web_image/lg1.png" class="logo">
@@ -119,8 +121,10 @@ button{
 </div>
 </header>
 
-<div class="container">
-<div id="output" style="width:100%"></div>
+<div class="content">
+<div id="output" style="width:100%;height:100%"></div>
+</div>
+
 </div>
 
 <script>
@@ -131,13 +135,6 @@ const DEPARTMENTS = [
   "medicine",
   "surgery"
 ];
-
-function formatDate(d){
-  const day = String(d.getDate()).padStart(2,'0');
-  const month = String(d.getMonth()+1).padStart(2,'0');
-  const year = d.getFullYear();
-  return `${day}/${month}/${year}`;
-}
 
 const now=new Date();
 if(now.getHours()<8){now.setDate(now.getDate()-1)}
