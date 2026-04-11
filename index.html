@@ -1,240 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>On-Call Dashboard - AIIMS Raipur</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background-color: #eef2f7;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trauma & Emergency Medicine On-call Dashboard</title>
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #2c3e50;
-    }
-
-    .current-day {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .controls {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    input[type="date"] {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      padding: 8px 16px;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f9fafc;
-      font-weight: 600;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f4f6f9;
-    }
-
-    td:hover {
-      background-color: #eaf0f6;
-    }
-
-    .phone-number {
-      color: #3498db;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    @media (max-width: 600px) {
-      .controls {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      table, thead, tbody, th, td, tr {
-        display: block;
-        width: 100%;
-      }
-
-      tr {
-        margin-bottom: 15px;
-        background-color: #fff !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        border-radius: 8px;
-        padding: 10px;
-      }
-
-      th {
-        display: none;
-      }
-
-      td {
-        text-align: left;
-        padding: 8px 10px;
-        border: none;
-      }
-
-      td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        display: block;
-        margin-bottom: 4px;
-        color: #555;
-      }
-    }
-  </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#0f172a}
+header{text-align:center;padding:20px;background:#ffffffcc;backdrop-filter: blur(12px);border-bottom:1px solid #e2e8f0;position:sticky;top:0}
+.logo{height:45px;margin-bottom:8px}
+header h2{font-size:1.3rem;font-weight:600;color:#1e3a8a}
+.controls{margin-top:12px}
+input,select{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
+button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;background:#1e3a8a;color:white;display:block;margin:auto}
+.container{padding:15px;max-width:900px;margin:auto}
+.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(260px,1fr));gap:15px}
+.card{background:white;padding:18px;border-radius:16px;border:1px solid #e2e8f0}
+.role{font-size:0.8rem;color:#64748b;margin-bottom:6px}
+.name{font-size:1.2rem;font-weight:600;cursor:pointer;color:#1e3a8a}
+.call-btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:10px;color:white}
+.oc1{background:#22c55e}.oc2{background:#0ea5e9}.sr{background:#f59e0b}.cons{background:#ef4444}
+.empty{text-align:center;margin-top:30px}
+.empty img{width:140px}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>On-Call Dashboard for ED - AIIMS Raipur</h1>
-    <div id="currentDay" class="current-day"></div>
 
-    <div class="controls">
-      <input type="date" id="datePicker" />
-      <button id="updateDateButton">Update Date</button>
-    </div>
+<header>
+<img src="https://website.aiimsraipur.edu.in/web_image/lg1.png" class="logo">
+<h2>Trauma & Emergency Medicine On-call Dashboard</h2>
 
-    <table id="callTable">
-      <thead>
-        <tr>
-          <th>Department</th>
-          <th>First Call</th>
-          <th>Second Call</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data will be inserted here -->
-      </tbody>
-    </table>
-  </div>
+<div class="controls">
+<select id="dept">
+<option value="ctvs">CTVS</option>
+<option value="medicine">Medicine</option>
+<option value="surgery">Surgery</option>
+</select><br><br>
+<input type="date" id="datePicker"><br>
+<button onclick="init()">Update</button>
+</div>
+</header>
 
-  <script>
-    let currentDate = new Date();
-    let rosterData = [];
-    const departmentFiles = [
-      'calldata/Burns and Plastic Surgery.json',
-      'calldata/Cardio Vascular & Thoracic Surgery.json' , 
-      'calldata/Radiology.json'
-    ];
+<div class="container">
+<div class="grid" id="output"></div>
+</div>
 
-    Promise.all(departmentFiles.map(file => fetch(file).then(res => res.json())))
-      .then(data => {
-        rosterData = data;
-        updateTableForDate(currentDate);
-      })
-      .catch(err => console.error('Error loading data:', err));
+<script>
+const CONTACT_FILE = "call_data/contact_details.csv";
 
-    function formatDate(date) {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear().toString().slice(-2);
-      return `${day}-${month}-${year}`;
-    }
+function formatDate(d){return d.toISOString().split('T')[0];}
 
-    function getDayOfWeek(date) {
-      return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
-    }
+const now=new Date();
+if(now.getHours()<8){now.setDate(now.getDate()-1)}
+document.getElementById("datePicker").value=formatDate(now);
 
-    function getCurrentDayDisplay(date) {
-      return `${getDayOfWeek(date)}, ${formatDate(date)}`;
-    }
+async function loadCSV(file){
+  const res=await fetch(file);
+  const text=await res.text();
+  return text.split("\n").map(r=>r.split(","));
+}
 
-    function updateTableForDate(date) {
-      if (date.getHours() < 8) date.setDate(date.getDate() - 1);
+function findRow(data,date){
+  const header=data[0];
+  const dateIndex=header.indexOf("date");
+  return data.find((r,i)=>i>0 && r[dateIndex]===date);
+}
 
-      const dateString = formatDate(date);
-      const dayOfWeek = getDayOfWeek(date);
-      document.getElementById('currentDay').textContent = `On-Call - ${getCurrentDayDisplay(date)} (08AM - 08PM)`;
+function getValue(row,header,key){
+  const idx=header.indexOf(key);
+  return idx!==-1 && row[idx] ? row[idx] : "<null>";
+}
 
-      const tableBody = document.querySelector('#callTable tbody');
-      tableBody.innerHTML = '';
+function card(role,name,cls){
+  return `<div class="card">
+    <div class="role">${role}</div>
+    <div class="name" onclick="handleCall('${name}')">${name}</div>
+    <button class="call-btn ${cls}" onclick="handleCall('${name}')">Call</button>
+  </div>`;
+}
 
-      let foundData = false;
+let CONTACTS=[];
 
-      rosterData.forEach(dept => {
-        const duty = dept.DutyRoster.find(item => item.Date === dateString && item.Day === dayOfWeek);
-        if (duty) {
-          foundData = true;
-          const row = document.createElement('tr');
+async function handleCall(name){
+  if(name==="<null>") return;
 
-          row.innerHTML = `
-            <td data-label="Department">${dept.Department}</td>
-            <td data-label="First Call"><strong>${duty.FirstCall.Name}</strong><br><span class="phone-number" data-phone="${duty.FirstCall.Number}">${duty.FirstCall.Number}</span></td>
-            <td data-label="Second Call"><strong>${duty.SecondCall.Name}</strong><br><span class="phone-number" data-phone="${duty.SecondCall.Number}">${duty.SecondCall.Number}</span></td>
-          `;
-          tableBody.appendChild(row);
-        }
-      });
+  if(CONTACTS.length===0){
+    CONTACTS=await loadCSV(CONTACT_FILE);
+  }
 
-      if (!foundData) {
-        tableBody.innerHTML = '<tr><td colspan="3">No data available for today</td></tr>';
-      }
+  const row=CONTACTS.find(r=>r[0].trim()===name.trim());
+  if(row){window.location.href=`tel:${row[1]}`}
+  else alert("Number not found for "+name);
+}
 
-      document.querySelectorAll('.phone-number').forEach(el => {
-        el.addEventListener('click', () => {
-          window.location.href = `tel:${el.dataset.phone}`;
-        });
-      });
-    }
+function render(header,row){
+  const out=document.getElementById("output");
 
-    document.getElementById('updateDateButton').addEventListener('click', () => {
-      const dateInput = document.getElementById('datePicker').value;
-      if (dateInput) {
-        updateTableForDate(new Date(dateInput));
-      } else {
-        alert('Please select a date');
-      }
-    });
-  </script>
+  if(!row){
+    out.innerHTML=`<div class='empty'>
+    <img src='https://raw.githubusercontent.com/akhilrajs/ED-Call-Registry/refs/heads/main/data%20not%20found.png'>
+    <p>No data found</p></div>`;
+    return;
+  }
+
+  out.innerHTML=`
+    ${card("On Call 1",getValue(row,header,"on_call1"),"oc1")}
+    ${card("On Call 2",getValue(row,header,"on_call2"),"oc2")}
+    ${card("Senior Resident",getValue(row,header,"on_call_SR"),"sr")}
+    ${card("Consultant",getValue(row,header,"on_call_consultant"),"cons")}
+  `;
+}
+
+async function init(){
+  const dept=document.getElementById("dept").value;
+  const file=`call_data/${dept}.csv`;
+
+  const data=await loadCSV(file);
+  const header=data[0];
+  const date=document.getElementById("datePicker").value;
+  const row=findRow(data,date);
+
+  render(header,row);
+}
+
+init();
+</script>
+
 </body>
 </html>
+
+<!--
+IMPORTANT:
+You CANNOT use .xlsx in browser directly.
+Convert each department file to CSV.
+
+Example: ctvs.csv
+
+date,on_call1,on_call2,on_call_SR,on_call_consultant
+2026-04-11,Dr A,Dr B,Dr C,Dr D
+
+contact_details.csv
+Name,Number
+Dr A,9876543210
+-->
