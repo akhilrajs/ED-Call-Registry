@@ -14,15 +14,40 @@ header{text-align:center;padding:20px;background:#ffffffcc;backdrop-filter: blur
 .logo{height:45px;margin-bottom:8px}
 header h2{font-size:1.3rem;font-weight:600;color:#1e3a8a}
 .controls{margin-top:12px}
-input,select{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
+input{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
 button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;background:#1e3a8a;color:white;display:block;margin:auto}
-.container{padding:15px;max-width:900px;margin:auto}
-.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(260px,1fr));gap:15px}
-.card{background:white;padding:18px;border-radius:16px;border:1px solid #e2e8f0}
-.role{font-size:0.8rem;color:#64748b;margin-bottom:6px}
-.name{font-size:1.2rem;font-weight:600;cursor:pointer;color:#1e3a8a}
-.call-btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:10px;color:white}
-.oc1{background:#22c55e}.oc2{background:#0ea5e9}.sr{background:#f59e0b}.cons{background:#ef4444}
+.container{padding:15px;max-width:1000px;margin:auto}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.table th, .table td{
+  padding:12px;
+  border-bottom:1px solid #e2e8f0;
+  text-align:center;
+  font-size:14px;
+}
+
+.table th{
+  background:#1e3a8a;
+  color:white;
+}
+
+.name{
+  color:#1e3a8a;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.null{
+  color:#94a3b8;
+}
+
 .empty{text-align:center;margin-top:30px}
 .empty img{width:140px}
 </style>
@@ -35,36 +60,48 @@ button{margin-top:10px;padding:10px 20px;border:none;border-radius:10px;backgrou
 <h2>Trauma & Emergency Medicine On-call Dashboard</h2>
 
 <div class="controls">
-<select id="dept">
-<option value="ctvs">CTVS</option>
-<option value="medicine">Medicine</option>
-<option value="surgery">Surgery</option>
-</select><br><br>
 <input type="date" id="datePicker"><br>
 <button onclick="init()">Update</button>
 </div>
 </header>
 
 <div class="container">
-<div class="grid" id="output"></div>
+<div id="output"></div>
 </div>
 
 <script>
 const CONTACT_FILE = "call_data/contact_details.csv";
 
-function formatDate(d){return d.toISOString().split('T')[0];}
+// 🔴 ADD YOUR DEPARTMENTS HERE
+const DEPARTMENTS = [
+  "ctvs",
+  "medicine",
+  "surgery"
+];
+
+function formatDate(d){
+  const day = String(d.getDate()).padStart(2,'0');
+  const month = String(d.getMonth()+1).padStart(2,'0');
+  const year = d.getFullYear();
+  return `${day}/${month}/${year}`;
+}
 
 const now=new Date();
 if(now.getHours()<8){now.setDate(now.getDate()-1)}
-document.getElementById("datePicker").value=formatDate(now);
+// keep input in YYYY-MM-DD but convert for matching later
+document.getElementById("datePicker").value = now.toISOString().split('T')[0];
 
 async function loadCSV(file){
-  const res=await fetch(file);
-  const text=await res.text();
-  return text.split("\n").map(r=>r.split(","));
+  try{
+    const res=await fetch(file);
+    if(!res.ok) return null;
+    const text=await res.text();
+    return text.split("\n").map(r=>r.split(","));
+  }catch{return null}
 }
 
 function findRow(data,date){
+  if(!data) return null;
   const header=data[0];
   const dateIndex=header.indexOf("date");
   return data.find((r,i)=>i>0 && r[dateIndex]===date);
@@ -73,14 +110,6 @@ function findRow(data,date){
 function getValue(row,header,key){
   const idx=header.indexOf(key);
   return idx!==-1 && row[idx] ? row[idx] : "<null>";
-}
-
-function card(role,name,cls){
-  return `<div class="card">
-    <div class="role">${role}</div>
-    <div class="name" onclick="handleCall('${name}')">${name}</div>
-    <button class="call-btn ${cls}" onclick="handleCall('${name}')">Call</button>
-  </div>`;
 }
 
 let CONTACTS=[];
@@ -92,39 +121,66 @@ async function handleCall(name){
     CONTACTS=await loadCSV(CONTACT_FILE);
   }
 
-  const row=CONTACTS.find(r=>r[0].trim()===name.trim());
+  const row=CONTACTS?.find(r=>r[0].trim()===name.trim());
   if(row){window.location.href=`tel:${row[1]}`}
   else alert("Number not found for "+name);
 }
 
-function render(header,row){
-  const out=document.getElementById("output");
-
-  if(!row){
-    out.innerHTML=`<div class='empty'>
-    <img src='https://raw.githubusercontent.com/akhilrajs/ED-Call-Registry/refs/heads/main/data%20not%20found.png'>
-    <p>No data found</p></div>`;
-    return;
-  }
-
-  out.innerHTML=`
-    ${card("On Call 1",getValue(row,header,"on_call1"),"oc1")}
-    ${card("On Call 2",getValue(row,header,"on_call2"),"oc2")}
-    ${card("Senior Resident",getValue(row,header,"on_call_SR"),"sr")}
-    ${card("Consultant",getValue(row,header,"on_call_consultant"),"cons")}
-  `;
+function formatCell(name){
+  if(name==="<null>") return `<span class='null'>&lt;null&gt;</span>`;
+  return `<span class='name' onclick="handleCall('${name}')">${name}</span>`;
 }
 
 async function init(){
-  const dept=document.getElementById("dept").value;
-  const file=`call_data/${dept}.csv`;
+  const rawDate = document.getElementById("datePicker").value;
 
-  const data=await loadCSV(file);
-  const header=data[0];
-  const date=document.getElementById("datePicker").value;
-  const row=findRow(data,date);
+  // convert YYYY-MM-DD → DD/MM/YYYY
+  const parts = rawDate.split('-');
+  const date = `${parts[2]}/${parts[1]}/${parts[0]}`;
+  const out=document.getElementById("output");
 
-  render(header,row);
+  let rowsHTML = "";
+
+  for(const dept of DEPARTMENTS){
+    const file=`call_data/${dept}.csv`;
+    const data=await loadCSV(file);
+
+    if(!data){
+      rowsHTML += `<tr><td>${dept.toUpperCase()}</td><td colspan="4" class="null">No file</td></tr>`;
+      continue;
+    }
+
+    const header=data[0];
+    const row=findRow(data,date);
+
+    if(!row){
+      rowsHTML += `<tr><td>${dept.toUpperCase()}</td><td colspan="4" class="null">No data</td></tr>`;
+      continue;
+    }
+
+    rowsHTML += `
+      <tr>
+        <td><b>${dept.toUpperCase()}</b></td>
+        <td>${formatCell(getValue(row,header,"on_call1"))}</td>
+        <td>${formatCell(getValue(row,header,"on_call2"))}</td>
+        <td>${formatCell(getValue(row,header,"on_call_SR"))}</td>
+        <td>${formatCell(getValue(row,header,"on_call_consultant"))}</td>
+      </tr>
+    `;
+  }
+
+  out.innerHTML = `
+    <table class="table">
+      <tr>
+        <th>Department</th>
+        <th>On Call 1</th>
+        <th>On Call 2</th>
+        <th>SR</th>
+        <th>Consultant</th>
+      </tr>
+      ${rowsHTML}
+    </table>
+  `;
 }
 
 init();
@@ -132,18 +188,3 @@ init();
 
 </body>
 </html>
-
-<!--
-IMPORTANT:
-You CANNOT use .xlsx in browser directly.
-Convert each department file to CSV.
-
-Example: ctvs.csv
-
-date,on_call1,on_call2,on_call_SR,on_call_consultant
-2026-04-11,Dr A,Dr B,Dr C,Dr D
-
-contact_details.csv
-Name,Number
-Dr A,9876543210
--->
