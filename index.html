@@ -3,237 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trauma & Emergency Medicine On-call Dashboard</title>
+<title>Trauma & Emergency On-call</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:#f1f5f9;
-  color:#0f172a;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --accent: #e2e8f0;
+    --success: #10b981;
 }
 
-/* MAIN APP WRAPPER */
-.app{
-  width:100%;
-  max-width:1100px;
-  height:90vh;
-  display:flex;
-  flex-direction:column;
-  background:#ffffff;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  overflow:hidden;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-header{
-  text-align:center;
-  padding:15px;
-  border-bottom:1px solid #e2e8f0;
+.app {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
-.logo{height:40px;margin-bottom:6px}
-header h2{font-size:1.1rem;font-weight:600;color:#1e3a8a}
-
-.controls{margin-top:8px}
-input{padding:8px;border-radius:8px;border:1px solid #cbd5e1}
-
-button{
-  margin-top:8px;
-  padding:6px 14px;
-  border:none;
-  border-radius:8px;
-  background:#1e3a8a;
-  color:white;
+/* HEADER SECTION */
+header {
+    background: white;
+    padding: 24px;
+    border-bottom: 1px solid var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.content{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;
+.brand { display: flex; align-items: center; gap: 15px; }
+.logo { height: 45px; width: auto; }
+header h2 { font-size: 1.25rem; font-weight: 700; color: var(--primary-dark); letter-spacing: -0.02em; }
+
+.controls { display: flex; align-items: center; gap: 10px; }
+
+input[type="date"] {
+    font-family: inherit;
+    padding: 8px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    outline: none;
+    color: var(--text-main);
+    transition: border 0.2s;
 }
 
-.table{
-  width:100%;
-  height:100%;
-  border-collapse:collapse;
+input[type="date"]:focus { border-color: var(--primary); }
+
+button {
+    background: var(--primary);
+    color: white;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.table th, .table td{
-  padding:12px;
-  border-bottom:1px solid #e2e8f0;
-  text-align:center;
-  font-size:14px;
+button:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* CONTENT & TABLE */
+.content { padding: 20px; overflow-x: auto; }
+
+.table-container { border-radius: 12px; border: 1px solid var(--accent); overflow: hidden; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: white;
 }
 
-.table th{
-  background:#1e3a8a;
-  color:white;
-  position:sticky;
-  top:0;
+th {
+    background: #f1f5f9;
+    padding: 14px 16px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 700;
 }
 
-.name{
-  color:#1e3a8a;
-  font-weight:600;
-  cursor:pointer;
-  display:inline-block;
+td {
+    padding: 16px;
+    border-bottom: 1px solid var(--accent);
+    font-size: 0.9rem;
 }
 
-.name.pop{
-  animation:pop 0.2s ease;
+tr:last-child td { border-bottom: none; }
+
+.dept-name {
+    font-weight: 700;
+    color: var(--primary-dark);
 }
 
-@keyframes pop{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.2)}
-  100%{transform:scale(1)}
+/* CONTACT LINK STYLE */
+.name-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: #eff6ff;
+    color: var(--primary);
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
 }
 
-.null{color:#94a3b8}
+.name-pill:hover {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
 
-.empty{text-align:center}
-.empty img{width:120px}
+.name-pill.pop { transform: scale(0.95); opacity: 0.7; }
 
+.null-text { color: #cbd5e1; font-style: italic; font-size: 0.85rem; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header { flex-direction: column; text-align: center; }
+    .brand { flex-direction: column; }
+    td, th { padding: 10px; font-size: 0.8rem; }
+}
 </style>
 </head>
 
 <body>
 
 <div class="app">
+    <header>
+        <div class="brand">
+            <img src="https://website.aiimsraipur.edu.in/web_image/lg1.png" class="logo" alt="Logo">
+            <h2>Trauma & Emergency<br><span style="font-weight:400; font-size:0.9rem; color:var(--text-muted)">On-call Dashboard</span></h2>
+        </div>
 
-<header>
-<img src="https://website.aiimsraipur.edu.in/web_image/lg1.png" class="logo">
-<h2>Trauma & Emergency Medicine On-call Dashboard</h2>
+        <div class="controls">
+            <input type="date" id="datePicker">
+            <button onclick="init()">Update</button>
+        </div>
+    </header>
 
-<div class="controls">
-<input type="date" id="datePicker"><br>
-<button onclick="init()">Update</button>
-</div>
-</header>
-
-<div class="content">
-<div id="output" style="width:100%;height:100%"></div>
-</div>
-
+    <div class="content">
+        <div class="table-container">
+            <table id="rosterTable">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>On Call 1</th>
+                        <th>On Call 2</th>
+                        <th>Senior Res.</th>
+                        <th>Consultant</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script>
 const CONTACT_FILE = "call_data/contact_details.csv";
+const DEPARTMENTS = ["ctvs", "medicine", "surgery"];
 
-const DEPARTMENTS = [
-  "ctvs",
-  "medicine",
-  "surgery"
-];
-
-const now=new Date();
-if(now.getHours()<8){now.setDate(now.getDate()-1)}
+// Set default date logic
+const now = new Date();
+if(now.getHours() < 8) { now.setDate(now.getDate() - 1); }
 document.getElementById("datePicker").value = now.toISOString().split('T')[0];
 
-async function loadCSV(file){
-  try{
-    const res=await fetch(file);
-    if(!res.ok) return null;
-    const text=await res.text();
-    return text.split("\n").map(r=>r.split(","));
-  }catch{return null}
+async function loadCSV(file) {
+    try {
+        const res = await fetch(file);
+        if(!res.ok) return null;
+        const text = await res.text();
+        return text.split("\n").filter(r => r.trim()).map(r => r.split(","));
+    } catch { return null; }
 }
 
-function findRow(data,date){
-  if(!data) return null;
-  const header=data[0];
-  const dateIndex=header.indexOf("date");
-  return data.find((r,i)=>i>0 && r[dateIndex]===date);
+function findRow(data, date) {
+    if(!data) return null;
+    const header = data[0].map(h => h.trim().toLowerCase());
+    const dateIndex = header.indexOf("date");
+    return data.find((r, i) => i > 0 && r[dateIndex]?.trim() === date);
 }
 
-function getValue(row,header,key){
-  const idx=header.indexOf(key);
-  return idx!==-1 && row[idx] ? row[idx] : "<null>";
+function getValue(row, header, key) {
+    const idx = header.map(h => h.trim()).indexOf(key);
+    return (idx !== -1 && row[idx]) ? row[idx].trim() : "<null>";
 }
 
-let CONTACTS=[];
+let CONTACTS = [];
 
-async function handleCall(el,name){
-  if(name==="<null>") return;
+async function handleCall(el, name) {
+    if(name === "<null>") return;
+    el.classList.add("pop");
 
-  el.classList.add("pop");
-
-  if(CONTACTS.length===0){
-    CONTACTS=await loadCSV(CONTACT_FILE);
-  }
-
-  const row=CONTACTS?.find(r=>r[0].trim()===name.trim());
-
-  setTimeout(()=>{
-    if(row){window.location.href=`tel:${row[1]}`}
-    else alert("Number not found for "+name);
-    el.classList.remove("pop");
-  },180);
-}
-
-function formatCell(name){
-  if(name==="<null>") return `<span class='null'>&lt;null&gt;</span>`;
-  return `<span class='name' onclick="handleCall(this,'${name}')">${name}</span>`;
-}
-
-async function init(){
-  const rawDate = document.getElementById("datePicker").value;
-  const parts = rawDate.split('-');
-  const date = `${parts[2]}/${parts[1]}/${parts[0]}`;
-  const out=document.getElementById("output");
-
-  let rowsHTML = "";
-
-  for(const dept of DEPARTMENTS){
-    const file=`call_data/${dept}.csv`;
-    const data=await loadCSV(file);
-
-    if(!data){
-      rowsHTML += `<tr><td>${dept.toUpperCase()}</td><td colspan="4" class="null">No file</td></tr>`;
-      continue;
+    if(CONTACTS.length === 0) {
+        CONTACTS = await loadCSV(CONTACT_FILE);
     }
 
-    const header=data[0];
-    const row=findRow(data,date);
+    const row = CONTACTS?.find(r => r[0].trim().toLowerCase() === name.toLowerCase());
 
-    if(!row){
-      rowsHTML += `<tr><td>${dept.toUpperCase()}</td><td colspan="4" class="null">No data</td></tr>`;
-      continue;
+    setTimeout(() => {
+        if(row && row[1]) {
+            window.location.href = `tel:${row[1].trim()}`;
+        } else {
+            alert("Contact number not found for " + name);
+        }
+        el.classList.remove("pop");
+    }, 200);
+}
+
+function formatCell(name) {
+    if(name === "<null>" || !name) return `<span class="null-text">Not Assigned</span>`;
+    return `<div class="name-pill" onclick="handleCall(this,'${name}')">${name}</div>`;
+}
+
+async function init() {
+    const rawDate = document.getElementById("datePicker").value;
+    const parts = rawDate.split('-');
+    const date = `${parts[2]}/${parts[1]}/${parts[0]}`;
+    const tbody = document.getElementById("tableBody");
+
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:40px;">Loading schedule...</td></tr>`;
+
+    let rowsHTML = "";
+
+    for(const dept of DEPARTMENTS) {
+        const file = `call_data/${dept}.csv`;
+        const data = await loadCSV(file);
+
+        if(!data || data.length < 2) {
+            rowsHTML += `<tr><td class="dept-name">${dept.toUpperCase()}</td><td colspan="4" class="null-text">File missing</td></tr>`;
+            continue;
+        }
+
+        const header = data[0];
+        const row = findRow(data, date);
+
+        if(!row) {
+            rowsHTML += `<tr><td class="dept-name">${dept.toUpperCase()}</td><td colspan="4" class="null-text">No roster for this date</td></tr>`;
+            continue;
+        }
+
+        rowsHTML += `
+            <tr>
+                <td class="dept-name">${dept.toUpperCase()}</td>
+                <td>${formatCell(getValue(row, header, "on_call1"))}</td>
+                <td>${formatCell(getValue(row, header, "on_call2"))}</td>
+                <td>${formatCell(getValue(row, header, "on_call_SR"))}</td>
+                <td>${formatCell(getValue(row, header, "on_call_consultant"))}</td>
+            </tr>
+        `;
     }
 
-    rowsHTML += `
-      <tr>
-        <td><b>${dept.toUpperCase()}</b></td>
-        <td>${formatCell(getValue(row,header,"on_call1"))}</td>
-        <td>${formatCell(getValue(row,header,"on_call2"))}</td>
-        <td>${formatCell(getValue(row,header,"on_call_SR"))}</td>
-        <td>${formatCell(getValue(row,header,"on_call_consultant"))}</td>
-      </tr>
-    `;
-  }
-
-  out.innerHTML = `
-    <table class="table">
-      <tr>
-        <th>Department</th>
-        <th>On Call 1</th>
-        <th>On Call 2</th>
-        <th>SR</th>
-        <th>Consultant</th>
-      </tr>
-      ${rowsHTML}
-    </table>
-  `;
+    tbody.innerHTML = rowsHTML;
 }
 
 init();
