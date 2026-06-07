@@ -176,7 +176,14 @@
             <img src="https://website.aiimsraipur.edu.in/web_image/lg1.png" class="logo" alt="Logo">
             <div>
                 <h2>Trauma & Emergency</h2>
-                <div style="font-size:0.85rem; color:var(--text-muted)">On-call Dashboard</div>
+                <div style="font-size:0.85rem; color:var(--text-muted)">
+  On-call Dashboard | Prototype 1 | Contact Dev:
+  <a href="https://api.whatsapp.com/send?phone=916282915491&text=hi%20Dr%20Akhil"
+     target="_blank"
+     style="color:#25D366; text-decoration:none; font-weight:600;">
+    Dr Akhil Raj S
+  </a>
+</div>
             </div>
         </div>
 
@@ -251,7 +258,7 @@
     }
 
     function formatCell(name) {
-        if(name === "<null>" || !name) return `<span class="null-text">Not Assigned</span>`;
+        if(name === "<null>" || !name) return `<span class="null-text">Info N/A</span>`;
         return `<div class="name-pill" onclick="handleCall(this,'${name}')">${name}</div>`;
     }
 
