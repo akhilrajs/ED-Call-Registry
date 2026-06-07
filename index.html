@@ -258,7 +258,7 @@
     }
 
     function formatCell(name) {
-        if(name === "<null>" || !name) return `<span class="null-text">Info N/A</span>`;
+        if(name === "<null>" || !name) return `<span class="null-text"> </span>`;
         return `<div class="name-pill" onclick="handleCall(this,'${name}')">${name}</div>`;
     }
 
