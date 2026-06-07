@@ -1,31 +1,31 @@
 date,on_call1,on_call2,on_call_SR,on_call_consultant
-01/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Gasper Joseph Varghese,,Dr G. Saurabh
-02/04/2026,Dr Divya Prakash,Dr Shrishti Mukherjee,,Dr Nirupam Sekhar Chakraborty
-03/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Yash Bhageria,,Dr Sneha Jain
-04/04/2026,Dr Sohan Paikray,Dr Akhilesh Satish Pargaonkar,,Dr Nirupam Sekhar Chakraborty
-05/04/2026,Dr Divya Prakash,Dr Gasper Joseph Varghese,,Dr Nirupam Sekhar Chakraborty
-06/04/2026,Dr Sohan Paikray,Dr Shrishti Mukherjee,,Dr Pranay Mehsare
-07/04/2026,Dr Yash Bhageria,Dr Akhilesh Satish Pargaonkar,,Dr Preetam Sahani
-08/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Yash Bhageria,,Dr G. Saurabh
-09/04/2026,Dr Sohan Paikray,Dr Shrishti Mukherjee,,Dr Nirupam Sekhar Chakraborty
-10/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Yash Bhageria,,Dr Sneha Jain
-11/04/2026,Dr Shrishti Mukherjee,Dr Divya Prakash,,Dr Pranay Mehsare
-12/04/2026,Dr Sohan Paikray,Dr Yash Bhageria,,Dr Pranay Mehsare
-13/04/2026,Dr Divya Prakash,Dr Shrishti Mukherjee,,Dr Nirupam Sekhar Chakraborty
-14/04/2026,Dr Akhilesh Satish Pargaonkar,Dr Yash Bhageria,,Dr Preetam Sahani
-15/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Gasper Joseph Varghese,,Dr G. Saurabh
-16/04/2026,Dr Sohan Paikray,Dr Shrishti Mukherjee,,Dr Pranay Mehsare
-17/04/2026,Dr Divya Prakash,Dr Akhilesh Satish Pargaonkar,,Dr Sneha Jain
-18/04/2026,Dr Gasper Joseph Varghese,Dr Yash Bhageria,,Dr G. Saurabh
-19/04/2026,Dr Yash Bhageria,Dr Divya Prakash,,Dr G. Saurabh
-20/04/2026,Dr Divya Prakash,Dr Gasper Joseph Varghese,,Dr Pranay Mehsare
-21/04/2026,Dr Akhilesh Satish Pargaonkar,Dr Yash Bhageria,,Dr Preetam Sahani
-22/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Gasper Joseph Varghese,,Dr G. Saurabh
-23/04/2026,Dr Sohan Paikray,Dr Shrishti Mukherjee,,Dr Nirupam Sekhar Chakraborty
-24/04/2026,Dr Divya Prakash,Dr Akhilesh Satish Pargaonkar,,Dr Sneha Jain
-25/04/2026,Dr Akhilesh Satish Pargaonkar,Dr Gasper Joseph Varghese,,Dr Preetam Sahani
-26/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Shrishti Mukherjee,,Dr Preetam Sahani
-27/04/2026,Dr Sohan Paikray,Dr Gasper Joseph Varghese,,Dr Pranay Mehsare
-28/04/2026,Dr Gasper Joseph Varghese,Dr Akhilesh Satish Pargaonkar,,Dr Sneha Jain
-29/04/2026,Dr Manish Chandrabhan Somkuwar,Dr Divya Prakash,,Dr G. Saurabh
-30/04/2026,Dr Sohan Paikray,Dr Shrishti Mukherjee,,Dr Nirupam Sekhar Chakraborty
+01/06/2026,Dr Sohan Paikray,Dr Bishal Ganguly,,Dr Nirupam Chakraborty
+02/06/2026,Dr Yash Bhageria,Dr Divya Prakash,Dr Rimy Prashad,Dr Preetam Sahani
+03/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Bishal Ganguly,,Dr Sneha Jain
+04/06/2026,Dr Sohan Paikray,Dr Manish Chandrabhan Somkuwar,,Dr Pranay Mehsare
+05/06/2026,Dr Bishal Ganguly,Dr Akhilesh Satish Pargaonkar,,Dr Sneha Jain
+06/06/2026,Dr Sohan Paikray,Dr Divya Prakash,,Dr Sneha Jain
+07/06/2026,Dr Gasper Joseph Varghese,Dr Bishal Ganguly,,Dr Sneha Jain
+08/06/2026,Dr Divya Prakash,Dr Yash Bhageria,,Dr Pranay Mehsare
+09/06/2026,Dr Akhilesh Satish Pargaonkar,Dr Divya Prakash,Dr Rimy Prashad,Dr Preetam Sahani
+10/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Gasper Joseph Varghese,,Dr Sneha Jain
+11/06/2026,Dr Sohan Paikray,Dr Manish Chandrabhan Somkuwar,,Dr Nirupam Chakraborty
+12/06/2026,Dr Gasper Joseph Varghese,Dr Yash Bhageria,,Dr Pranay Mehsare
+13/06/2026,Dr Yash Bhageria,Dr Manish Chandrabhan Somkuwar,,Dr Nirupam Chakraborty
+14/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Akhilesh Satish Pargaonkar,,Dr Nirupam Chakraborty
+15/06/2026,Dr Divya Prakash,Dr Bishal Ganguly,,Dr Pranay Mehsare
+16/06/2026,Dr Yash Bhageria,Dr Divya Prakash,Dr Rimy Prashad,Dr Preetam Sahani
+17/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Yash Bhageria,,Dr Sneha Jain
+18/06/2026,Dr Sohan Paikray,Dr Manish Chandrabhan Somkuwar,,Dr Nirupam Chakraborty
+19/06/2026,Dr Bishal Ganguly,Dr Akhilesh Satish Pargaonkar,Dr Rimy Prashad,Dr Preetam Sahani
+20/06/2026,Dr Divya Prakash,Dr Bishal Ganguly,,Dr Pranay Mehsare
+21/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Bishal Ganguly,,Dr Pranay Mehsare
+22/06/2026,Dr Sohan Paikray,Dr Gasper Joseph Varghese,,Dr Nirupam Chakraborty
+23/06/2026,Dr Akhilesh Satish Pargaonkar,Dr Akhilesh Satish Pargaonkar,,Dr Preetam Sahani
+24/06/2026,Dr Bishal Ganguly,Dr Gasper Joseph Varghese,Dr Rimy Prashad,Dr Sneha Jain
+25/06/2026,Dr Sohan Paikray,Dr Manish Chandrabhan Somkuwar,,Dr Pranay Mehsare
+26/06/2026,Dr Manish Chandrabhan Somkuwar,Dr Divya Prakash,,Dr Nirupam Chakraborty
+27/06/2026,Dr Akhilesh Satish Pargaonkar,Dr Gasper Joseph Varghese,Dr Rimy Prashad,Dr Preetam Sahani
+28/06/2026,Dr Bishal Ganguly,Dr Yash Bhageria,Dr Rimy Prashad,Dr Preetam Sahani
+29/06/2026,Dr Sohan Paikray,Dr Bishal Ganguly,,Dr Pranay Mehsare
+30/06/2026,Dr Yash Bhageria,Dr Akhilesh Satish Pargaonkar,Dr Rimy Prashad,Dr Preetam Sahani
